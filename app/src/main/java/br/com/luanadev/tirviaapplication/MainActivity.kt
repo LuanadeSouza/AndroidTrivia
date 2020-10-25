@@ -1,21 +1,21 @@
 package br.com.luanadev.tirviaapplication
 
-import android.app.Activity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import br.com.luanadev.tirviaapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var apBarConfiguration: AppBarConfiguration
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,14 +23,23 @@ class MainActivity : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         drawerLayout = binding.drawerLayout
         val navController = findNavController(R.id.myNavHostFragment)
+
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        apBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        // prevent nav gesture if not on start destination
+        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, bundle: Bundle? ->
+            if (nd.id == nc.graph.startDestination) {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            } else {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+        }
+        NavigationUI.setupWithNavController(binding.navView, navController)
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.rulesFragment, R.id.aboutFragment, R.id.share))
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return NavigationUI.navigateUp(navController, apBarConfiguration)
     }
 }
