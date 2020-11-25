@@ -23,23 +23,23 @@ class GameFragment : Fragment() {
     // resources so we could internationalize. (or better yet, not define the questions in code...)
     private val questions: MutableList<Question> = mutableListOf(
         Question(
-            text = "What is Android Jetpack?",
-            answers = listOf("all of these", "tools", "documentation", "libraries")
+            text = "O que é Android Jetpack?",
+            answers = listOf("Todas as alternativas", "Ferramentas", "Documentação", "Bibliotecas")
         ),
         Question(
-            text = "Base class for Layout?",
+            text = "Classe base para Layout?",
             answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")
         ),
         Question(
-            text = "Layout for complex Screens?",
+            text = "Layout para telas complexas?",
             answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")
         ),
         Question(
-            text = "Pushing structured data into a Layout?",
+            text = "Enviar dados estruturados para um Layout?",
             answers = listOf("Data Binding", "Data Pushing", "Set Text", "OnClick")
         ),
         Question(
-            text = "Inflate layout in fragments?",
+            text = "Inflar layout em  fragments?",
             answers = listOf(
                 "onCreateView",
                 "onViewCreated",
@@ -48,11 +48,11 @@ class GameFragment : Fragment() {
             )
         ),
         Question(
-            text = "Build system for Android?",
+            text = "Sistema de construção para Android?",
             answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")
         ),
         Question(
-            text = "Android vector format?",
+            text = "Vetor formato Android?",
             answers = listOf(
                 "VectorDrawable",
                 "AndroidVectorDrawable",
@@ -65,7 +65,7 @@ class GameFragment : Fragment() {
             answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")
         ),
         Question(
-            text = "Registers app with launcher?",
+            text = "Registra o aplicativo com o launcher?",
             answers = listOf(
                 "intent-filter",
                 "app-registry",
@@ -74,7 +74,7 @@ class GameFragment : Fragment() {
             )
         ),
         Question(
-            text = "Mark a layout for Data Binding?",
+            text = "Marca um layout para Data Binding?",
             answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>")
         )
     )
